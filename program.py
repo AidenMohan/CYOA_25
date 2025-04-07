@@ -432,24 +432,38 @@ def door_4():
   print("(I would recommend playing a different pathway as this is one of the shortest!)")
   print("[As this pathway is very short I have made it so you have a 1 out of 5 chance to live]")
   print("[You got lucky!]")
-  
+    
 def choose_door(door_number):
     if door_number == 1:
-        return doordeath()
+        doordeath()
     elif door_number == 2:
-        return doordeath()
+        doordeath()
     elif door_number == 3:
-        return doordeath()
+        doordeath()
     elif door_number == 4:
-        return door_4()
+        door_4()
     elif door_number == 5:
-        return doordeath()
+        doordeath()
     else:
-        return "Invalid choice. Please choose a lifepod between 1 and 5."
+        print(f"Invalid choice ({door_number}). That lifepod doesn't exist or is unusable.")
+        return False
+    return True
 def leftrun():
-  print("You arrive at the main lifepod bay to chaos.")
-  print("You look around to see 5 lifepods that are open, but is it too good to be true?")
-  user_choice = int(input("Choose a lifepod (1-5): "))
+    print("You arrive at the main lifepod bay to chaos.")
+    print("You look around to see 5 lifepods that are open, but is it too good to be true?")
+
+    while True:
+        try:
+            user_choice_str = input("Choose a lifepod (1-5): ")
+            user_choice = int(user_choice_str)
+
+            result = choose_door(user_choice)
+
+            if result:
+                 break
+
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 def runrightpath():
   print("You get to the main intersection")
   print("You face a choice")
@@ -558,7 +572,8 @@ def rightcmdaccess():
 |____/|_____/_/   \_\_| |_| |_| """)
   print("You are now a corpse floating around in space")
   print("You have got 1 of 20 possible endings, try to get them all!")
-  def armoury():
+  
+def armoury():
   print("You arrive at the armoury and swipe your self in with your keycard")
   print("It seems like most of the lethal weapons have been taken already")
   print("You eye a stab-proof vest and put it on")
